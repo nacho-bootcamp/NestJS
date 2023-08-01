@@ -2,6 +2,8 @@ import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Tareas } from 'src/schemas/tareas.schemas';
 import { Model } from 'mongoose';
+import { crearTarea } from "../dto/create-Tarea.dto";
+import { updateTarea } from "../dto/update-Tarea.dto copy";
 
 @Injectable()
 export class TareasService {
@@ -12,7 +14,7 @@ export class TareasService {
   findAll() {
     this.tareaModel.find()
   }
-  async create(createTareas: any) {
+  async create(createTareas: crearTarea) {
     // se crea la tarea y y se guarda
     const nuevaTarea = new this.tareaModel(createTareas);
     await nuevaTarea.save()
@@ -25,7 +27,7 @@ export class TareasService {
     return tareaEncontrada
   }
 
-  async UpdateTarea(id: string, tarea: any) {
+  async UpdateTarea(id: string, tarea: updateTarea) {
     const actualizarTarea = this.tareaModel.findByIdAndUpdate(id, tarea);
     return actualizarTarea
   }
