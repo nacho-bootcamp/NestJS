@@ -21,5 +21,5 @@ export class Tareas {
 }
 
 export const TareaSchema = SchemaFactory.createForClass(Tareas)
-//El SchemaFactory se encarga de transformar la clase User en un esquema de
+//El SchemaFactory se encarga de transformar la clase Tareas en un esquema de
 // Mongoose que puede ser utilizado para interactuar con la base de datos MongoDB

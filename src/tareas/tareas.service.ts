@@ -12,12 +12,12 @@ export class TareasService {
   constructor(@InjectModel(Tareas.name) private tareaModel: Model<Tareas>) { }
 
   findAll() {
-    this.tareaModel.find()
+    return this.tareaModel.find()
   }
   async create(createTareas: crearTarea) {
     // se crea la tarea y y se guarda
     const nuevaTarea = new this.tareaModel(createTareas);
-    await nuevaTarea.save()
+    return await nuevaTarea.save()
     // const tareaCreada= this.tareaModel.create(createTareas);
     // return tareaCreada
   }
@@ -28,7 +28,8 @@ export class TareasService {
   }
 
   async UpdateTarea(id: string, tarea: updateTarea) {
-    const actualizarTarea = this.tareaModel.findByIdAndUpdate(id, tarea);
+    const actualizarTarea = this.tareaModel.findByIdAndUpdate(id, tarea, { new: true });
+    //si no ponemos new:true me devuelve el dato antes de ser actualizado
     return actualizarTarea
   }
 
@@ -37,3 +38,4 @@ export class TareasService {
     return deleteTarea
   }
 }
+// el dto sirve para recibir los datos que necesitamos para crear y actualizar
